@@ -12,6 +12,7 @@
             <th>Cliente</th>
             <th>Empleado</th>
             <th>Fecha</th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,39 @@
                 <td>@item.Customer.ContactName</td>
                 <td>@item.Employee.FirstName</td>
                 <td>@item.OrderDate</td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                decimal total = 0;
+                            }
+                            @foreach(var itemDet in item.OrderDetails)
+                            {
+                                total += itemDet.UnitPrice * itemDet.Quantity;
+                                <tr>
+                                    <td>@itemDet.Product.ProductName</td>
+                                    <td>@itemDet.Product.Category.CategoryName</td>
+                                    <td>@itemDet.UnitPrice</td>
+                                    <td>@itemDet.Quantity</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <td>Total</td>
+                            <td>@total</td>
+                        </tfoot>
+                    </table>
+                </td>
             </tr>
         }
     </tbody>
