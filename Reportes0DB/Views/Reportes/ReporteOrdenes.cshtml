@@ -1,0 +1,28 @@
+﻿@model List<Order>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+}
+<table>
+    <thead>
+        <tr>
+            <th># Orden</th>
+            <th>Cliente</th>
+            <th>Empleado</th>
+            <th>Fecha</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.Customer.ContactName</td>
+                <td>@item.Employee.FirstName</td>
+                <td>@item.OrderDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
